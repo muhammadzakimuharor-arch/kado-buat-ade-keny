@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memory Lane ✨</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <header class="hero-section">
+        <div class="badge">Our Best Memories 📸</div>
+        <h1> HAPPY BIRTHDAY✨ </h1>
+        <h1> Adek tersayangku keny 💐</h1>
+        <p>Setiap foto punya cerita, dan setiap cerita punya tawa. Ini rangkuman beberapa momen paling seru, absurd, dan berkesan yang pernah kita lewati bareng!</p>
+    </header>
+
+    <main class="gallery-grid">
+        <!-- KARTU MOMEN 1 -->
+        <div class="card" 
+             data-main-img="assets/sampul-satu.jpg.jpeg" 
+             data-title="Masa Polos Belum Kenal kehidupan dewasa / Throwback Zaman Bocil"
+             data-caption="Momen waktu masih polos-polosnya dan belum kenal kejamnya beban hidup. Berdiri tegap di taman dengan gaya yang udah 
+             kelihatan cool dari lahir. Siapa sangka bocil sedatar dan sekalem ini gedenya bisa sereceh sekarang? Bener-bener glow up yang hakiki!"
+             data-thumbnails="assets/isi-sampul-satu-ke1.jpg.jpeg,assets/isi-sampul-satu-ke2.jpg.jpeg,assets/isi-sampul-satu-ke3.jpg.jpeg">
+            <div class="card-inner">
+                <div class="card-img-container">
+                    <img src="assets/sampul-satu.jpg.jpeg" alt="Cover Momen 1">
+                </div>
+                <div class="card-content">
+                    <span class="card-chapter">Chapter 01</span>
+                    <h3>Masa Polos Belum Kenal kehidupan dewasa / Throwback Zaman Bocil</h3>
+                    <p>Klik buat baca ceritanya ✨</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU MOMEN 2 -->
+        <div class="card" 
+             data-main-img="assets/last3.jpeg" 
+             data-title="Mode Anak Senja / Nongkrong Santai"
+             data-caption="Niatnya nongkrong santai nyari angin, tapi ujung-ujungnya ngobrol ngalor-ngidul dari A sampai Z. Senyumnya di foto 
+             ini kalem banget kan? Padahal aslinya kalau udah ketawa bareng bisa kedengeran sampai radius 5 meter. Salah satu momen chill yang paling ngangenin!"
+             data-thumbnails="assets/isi-sampul-dua-ke1.jpg.jpeg,assets/isi-sampul-dua-ke2.jpg.jpeg,assets/isi-sampul-dua-ke3.jpg.jpeg">
+            <div class="card-inner">
+                <div class="card-img-container">
+                    <img src="assets/last3.jpeg" alt="Cover Momen 2">
+                </div>
+                <div class="card-content">
+                    <span class="card-chapter">Chapter 02</span>
+                    <h3>Mode Anak Senja / Nongkrong Santai</h3>
+                    <p>Klik buat baca ceritanya ✨</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- KARTU MOMEN 3 -->
+        <div class="card" 
+             data-main-img="assets/sampul-dua.jpg.jpeg" 
+             data-title="OOTD Era Maskeran / Estetik Tipis-Tipis"
+             data-caption="Bukti otentik zaman di mana ke mana-mana wajib pakai masker tapi OOTD tetep harus on point! Gaya andalan depan kaca,
+             biarpun kadang kacamata suka ngembun gara-gara napas sendiri. Tetep estetik kan walaupun setengah muka ketutup? Pose peace ✌️ adalah jalan ninjaku!"
+             data-thumbnails="assets/isi-sampul-tiga-ke1.jpg.jpeg,assets/sampul-tiga.jpg.jpeg,assets/isi-sampul-tiga-ke3.jpg.jpeg">
+            <div class="card-inner">
+                <div class="card-img-container">
+                    <img src="assets/sampul-dua.jpg.jpeg" alt="Cover Momen 3">
+                </div>
+                <div class="card-content">
+                    <span class="card-chapter">Chapter 03</span>
+                    <h3>OOTD Era Maskeran / Estetik Tipis-Tipis</h3>
+                    <p>Klik buat baca ceritanya ✨</p>
+                </div>
+            </div>
+        </div>
+        
+
+    </main>
+
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-wrapper">
+            <button class="modal-close" id="btnCloseModal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-view-left">
+                    <img id="mainModalImg" src="" alt="Main Preview">
+                </div>
+                <div class="modal-view-right">
+                    <h2 id="modalTitle">Judul Momen</h2>
+                    <div class="accent-line"></div>
+                    <p id="modalDesc">Cerita lengkap akan muncul di sini secara dinamis...</p>
+                    
+                    <div class="thumbnail-section">
+                        <h4>Momen Seru Lainnya:</h4>
+                        <div class="thumbnail-grid" id="modalThumbGrid">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

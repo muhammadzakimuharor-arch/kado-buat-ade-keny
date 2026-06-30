@@ -1,0 +1,325 @@
+/* === PALET WARNA & VARIABEL === */
+:root {
+    --color-bg: #faf7f2;         /* Warna krem hangat yang cozy & bersih */
+    --color-card-bg: #ffffff;
+    --color-text-dark: #2d3142;  /* Warna teks utama (bukan hitam pekat agar nyaman dibaca) */
+    --color-text-muted: #6c757d;
+    --color-primary: #d9745d;     /* Terracotta pastel yang manis */
+    --color-secondary: #e6b89c;   /* Soft peach accent */
+    --color-accent-blur: #f4e2de;
+    --font-main: 'Quicksand', sans-serif;
+    --font-handwritten: 'Caveat', cursive;
+    --shadow-soft: 0 12px 35px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 25px 45px rgba(217, 116, 93, 0.12);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* === RESET DASAR === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text-dark);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Bulatan Gradasi Estetik di Latar Belakang (Ambient Blobs) */
+.blob {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: var(--color-accent-blur);
+    filter: blur(90px);
+    opacity: 0.6;
+    z-index: -1;
+}
+.blob-1 { top: -120px; left: -120px; }
+.blob-2 { bottom: -100px; right: -100px; background: #ebd5cd; }
+
+/* === HERO SECTION === */
+.hero-section {
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-section .badge {
+    display: inline-block;
+    background-color: #ffffff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(217, 116, 93, 0.08);
+    letter-spacing: 1px;
+}
+
+.hero-section h1 {
+    font-family: var(--font-handwritten);
+    font-size: 4.2rem;
+    color: var(--color-primary);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+/* === GALLERY GRID (SANGAT RESPONSif) === */
+.gallery-grid {
+    max-width: 1200px;
+    margin: 0 auto 6rem;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr; /* Default Mobile */
+    gap: 2.5rem;
+}
+
+/* Layout Komputer / Tablet */
+@media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Kartu Foto Efek 3D */
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: 28px;
+    padding: 1.2rem;
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card-inner {
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+}
+
+.card-img-container {
+    width: 100%;
+    height: 330px;
+    border-radius: 18px;
+    overflow: hidden;
+    transform: translateZ(25px); /* Memberikan kedalaman 3D pop-out pada gambar */
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card:hover .card-img-container img {
+    transform: scale(1.06);
+}
+
+.card-content {
+    padding: 1.5rem 0.5rem 0.5rem;
+    text-align: center;
+    transform: translateZ(40px); /* Teks terasa mengambang lebih tinggi dari gambar */
+}
+
+.card-chapter {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.card-content h3 {
+    font-family: var(--font-handwritten);
+    font-size: 2.3rem;
+    color: var(--color-text-dark);
+    margin-bottom: 0.2rem;
+}
+
+.card-content p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+/* === LIGHTBOX MODAL (SMOOTH TRANSITION & GLASSMORPHISM) === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 49, 66, 0.75);
+    backdrop-filter: blur(12px); /* Efek blur latar belakang yang sangat estetik */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    padding: 1rem;
+}
+
+/* Saat modal dibuka aktifkan animasi lewat class ini */
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-wrapper {
+    background-color: var(--color-bg);
+    width: 100%;
+    max-width: 950px;
+    max-height: 85vh;
+    border-radius: 36px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
+    transform: scale(0.92) translateY(30px);
+    transition: var(--transition-smooth);
+}
+
+.modal-overlay.open .modal-wrapper {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2.8rem;
+    background: none;
+    border: none;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s, transform 0.2s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 85vh;
+}
+
+/* Di layar komputer, foto dan teks dibagi kiri-kanan */
+@media (min-width: 768px) {
+    .modal-body { flex-direction: row; }
+}
+
+/* Bagian Kiri: Frame Foto */
+.modal-view-left {
+    flex: 1.2;
+    background-color: #12131a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+}
+
+@media (min-width: 768px) {
+    .modal-view-left { height: 75vh; }
+}
+
+.modal-view-left img {
+    width: 100%;
+    height: 100%;
+   object-fit: contain;
+}   
+
+/* Bagian Kanan: Konten Teks Cerita */
+.modal-view-right {
+    flex: 1;
+    padding: 3.5rem 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: var(--color-card-bg);
+}
+
+.modal-view-right h2 {
+    font-family: var(--font-handwritten);
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.accent-line {
+    width: 50px;
+    height: 4px;
+    background: var(--color-secondary);
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+}
+
+#modalDesc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-dark);
+    margin-bottom: 2rem;
+}
+
+/* Area Foto Tambahan (Thumbnails) */
+.thumbnail-section h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    margin-bottom: 0.8rem;
+}
+
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+}
+
+.thumbnail-grid img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    border: 3px solid transparent;
+}
+
+.thumbnail-grid img:hover {
+    transform: scale(1.08);
+}
+
+/* Garis penanda foto mana yang sedang aktif tampil di sebelah kiri */
+.thumbnail-grid img.active-thumb {
+    border-color: var(--color-primary);
+}
